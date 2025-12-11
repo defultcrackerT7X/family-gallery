@@ -5,29 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T7X Family Gallery - معرض العائلة</title>
     <link rel="stylesheet" href="style.css">
-    <!-- رابط Font Awesome للأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- الموسيقى الخلفية -->
-    <audio id="backgroundMusic" loop>
-        <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3" type="audio/mpeg">
-    </audio>
-    
     <!-- شاشة القفل -->
     <div id="lockScreen">
-        <div class="light-beam"></div>
-        
-        <div class="floating-elements">
-            <div class="floating-element">📸</div>
-            <div class="floating-element">👨‍👩‍👧‍👦</div>
-            <div class="floating-element">💙</div>
-            <div class="floating-element">✨</div>
-            <div class="floating-element">🖼️</div>
-        </div>
-        
-        <div class="lock-frame"></div>
-        
         <div class="lock-container">
             <div class="houssem-name">Houssem</div>
             
@@ -48,31 +30,10 @@
 
     <!-- المحتوى الرئيسي -->
     <div id="mainContent">
-        <!-- الهيدر مع زر الوضع الليلي -->
+        <!-- الهيدر -->
         <header class="header">
-            <div class="header-top">
-                <div>
-                    <h1><i class="fas fa-camera-retro"></i> معرض العائلة - Houssem</h1>
-                    <p>مكان آمن لحفظ وتنظيم ذكريات العائلة</p>
-                </div>
-                <div class="theme-controls">
-                    <button id="themeToggle" class="theme-btn" title="تبديل الوضع">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- خلفيات متحركة اختيارية -->
-            <div class="bg-selector">
-                <select id="bgSelector" class="bg-select">
-                    <option value="default">خلفية افتراضية</option>
-                    <option value="animated-bg-1">خلفية 1</option>
-                    <option value="animated-bg-2">خلفية 2</option>
-                    <option value="animated-bg-3">خلفية 3</option>
-                    <option value="animated-bg-4">خلفية 4</option>
-                    <option value="animated-bg-5">خلفية 5</option>
-                </select>
-            </div>
+            <h1><i class="fas fa-camera-retro"></i> معرض العائلة - Houssem</h1>
+            <p>مكان آمن لحفظ وتنظيم ذكريات العائلة</p>
         </header>
 
         <!-- قسم إدارة الألبومات -->
@@ -86,9 +47,6 @@
                 </button>
                 <button id="deleteAlbumBtn" class="btn danger-btn">
                     <i class="fas fa-trash-alt"></i> حذف الألبوم الحالي
-                </button>
-                <button id="downloadAlbumBtn" class="btn primary-btn">
-                    <i class="fas fa-download"></i> تنزيل الألبوم
                 </button>
             </div>
             
@@ -109,112 +67,9 @@
                 <div class="progress-bar" id="progressBar">
                     <div class="progress-bar-fill" id="progressFill"></div>
                 </div>
-                <p class="upload-hint">
+                <p style="margin-top: 10px; color: #b8d4d1; font-size: 14px;">
                     يمكنك اختيار عدة ملفات مرة واحدة (الصور: JPG, PNG, GIF | الفيديو: MP4, WEBM)
                 </p>
-            </div>
-        </section>
-
-        <!-- الإحصائيات -->
-        <section class="control-section">
-            <h2 class="section-title"><i class="fas fa-chart-bar"></i> إحصائيات المعرض</h2>
-            
-            <div class="stats-container">
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-images"></i>
-                    </div>
-                    <div class="stat-content">
-                        <h3 id="totalImages">0</h3>
-                        <p>إجمالي الصور</p>
-                    </div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <div class="stat-content">
-                        <h3 id="totalVideos">0</h3>
-                        <p>إجمالي الفيديوهات</p>
-                    </div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-folder"></i>
-                    </div>
-                    <div class="stat-content">
-                        <h3 id="totalAlbums">1</h3>
-                        <p>عدد الألبومات</p>
-                    </div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <div class="stat-content">
-                        <h3 id="totalSize">0 MB</h3>
-                        <p>الحجم الكلي</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- محرر الصور -->
-        <section class="control-section" id="photoEditorSection" style="display: none;">
-            <h2 class="section-title"><i class="fas fa-edit"></i> محرر الصور</h2>
-            
-            <div class="editor-container">
-                <div class="editor-preview">
-                    <canvas id="imageCanvas"></canvas>
-                </div>
-                
-                <div class="editor-controls">
-                    <div class="filter-controls">
-                        <h3><i class="fas fa-sliders-h"></i> الفلاتر</h3>
-                        <div class="filter-buttons">
-                            <button class="filter-btn" data-filter="none">عادي</button>
-                            <button class="filter-btn" data-filter="grayscale">أبيض وأسود</button>
-                            <button class="filter-btn" data-filter="sepia">سيبيا</button>
-                            <button class="filter-btn" data-filter="brightness">سطوع</button>
-                            <button class="filter-btn" data-filter="contrast">تباين</button>
-                            <button class="filter-btn" data-filter="blur">ضبابي</button>
-                        </div>
-                    </div>
-                    
-                    <div class="adjust-controls">
-                        <h3><i class="fas fa-adjust"></i> التعديلات</h3>
-                        <div class="slider-group">
-                            <label>السطوع: <span id="brightnessValue">100%</span></label>
-                            <input type="range" id="brightnessSlider" min="0" max="200" value="100">
-                        </div>
-                        <div class="slider-group">
-                            <label>التباين: <span id="contrastValue">100%</span></label>
-                            <input type="range" id="contrastSlider" min="0" max="200" value="100">
-                        </div>
-                        <div class="slider-group">
-                            <label>الإشباع: <span id="saturationValue">100%</span></label>
-                            <input type="range" id="saturationSlider" min="0" max="200" value="100">
-                        </div>
-                    </div>
-                    
-                    <div class="editor-actions">
-                        <button id="applyFilterBtn" class="btn primary-btn">
-                            <i class="fas fa-check"></i> تطبيق التعديلات
-                        </button>
-                        <button id="resetFilterBtn" class="btn">
-                            <i class="fas fa-redo"></i> إعادة تعيين
-                        </button>
-                        <button id="downloadEditedBtn" class="btn primary-btn">
-                            <i class="fas fa-download"></i> تنزيل الصورة
-                        </button>
-                        <button id="closeEditorBtn" class="btn danger-btn">
-                            <i class="fas fa-times"></i> إغلاق المحرر
-                        </button>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -236,27 +91,6 @@
             <p>جميع الحقوق محفوظة - تصميم آمن وعائلي</p>
         </footer>
     </div>
-
-    <!-- عناصر التحكم بالموسيقى -->
-    <div class="music-controls">
-        <button id="playMusic" class="music-btn">
-            <i class="fas fa-play"></i>
-        </button>
-        <div class="volume-control">
-            <i class="fas fa-volume-up"></i>
-            <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="30">
-        </div>
-    </div>
-
-    <!-- زر فتح محرر الصور -->
-    <button id="openEditorBtn" class="floating-action-btn" title="فتح محرر الصور">
-        <i class="fas fa-magic"></i>
-    </button>
-
-    <!-- الزر العائم للعرض التلقائي -->
-    <button id="slideshowBtn" class="floating-action-btn slideshow-btn" title="عرض شرائح تلقائي">
-        <i class="fas fa-play-circle"></i>
-    </button>
 
     <script src="script.js"></script>
 </body>
